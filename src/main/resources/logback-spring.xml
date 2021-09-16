@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <property name="LOG_DIR" value="./logs/"/>
+  <property name="LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] [%X{ClientIP}] [%X{traceId}] %-5level %logger{35} [%file:%line] -%msg%n"/>
+
+  <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <Pattern>
+        ${LOG_PATTERN}
+      </Pattern>
+    </encoder>
+  </appender>
+
+  <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>info</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_DIR}/info/info.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>error</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_DIR}/error/error.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>
+        ${LOG_PATTERN}
+      </Pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_DIR}/catalina.out-%d{yyyy-MM-dd-HH}.log</FileNamePattern>
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- turn OFF all logging (children can override) -->
+  <logger name="com.soap" level="INFO" additivity="false">
+    <appender-ref ref="FILE"/>
+    <appender-ref ref="consoleAppender"/>
+    <!--    <appender-ref ref="INFO"/>-->
+    <!--    <appender-ref ref="ERROR"/>-->
+  </logger>
+
+  <!-- Query Loggers -->
+  <logger name="jdbc" level="ERROR"/>
+
+  <logger name="jdbc.sqlonly" level="ERROR" additivity="true">
+    <appender-ref ref="consoleAppender" />
+  </logger>
+
+  <!-- log SQL with timing information, post execution -->
+  <logger name="jdbc.sqltiming" level="ERROR" additivity="true">
+    <appender-ref ref="consoleAppender" />
+  </logger>
+
+  <logger name="jdbc.resultsettable" level="ERROR" additivity="true">
+    <appender-ref ref="consoleAppender" />
+
+  </logger>
+
+  <root level="INFO">
+    <appender-ref ref="consoleAppender"/>
+  </root>
+
+</configuration>

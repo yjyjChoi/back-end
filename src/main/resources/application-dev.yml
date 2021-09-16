@@ -1,0 +1,48 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 1000
+        jdbc.batch_size: 50
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+
+#  DOCKER 접속시 원격접속 오픈 명령어
+#  ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password by 'yourpassword';
+#  FLUSH PRIVILEGES;
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/aglio?useUnicode=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
+    username: root
+    password: 1q2w3e4r1!
+    hikari:
+      connectionTimeout: 10000
+      maximumPoolSize: 10
+      minimumIdle: 5
+      data-source-properties:
+        rewriteBatchedStatements: true # mysql 한정
+#    data: data.sql
+
+
+# none
+# create-drop : 시작시 drop -> create / 종료 : drop
+# create : 시작시 drop -> create
+# update : 변경된 스키마 적용
+# valide : 변경된 스키마 존재 시 변경점을 출력하고 애플리케이션 종료
+
+#slack:
+#  url: https://slack.com/api/chat.postMessage
+#  botToken: xoxb-2130138440769-2117738538403-gNuRiDz3Zg2pYk5cQd74FcxB
+#  channel: C023FMM4ZR9
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
