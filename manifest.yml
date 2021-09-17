@@ -1,0 +1,12 @@
+applications:
+  - name: spring-real
+    memory: 2G
+    instances: 1
+    buildpack: java_buildpack
+    path: ./build/libs/Aglio-eolio-0.0.1-SNAPSHOT.war
+    env:
+      SPRING_PROFILES_ACTIVE: real
+    host: kwctest
+    domain: paas-ta.org
+services:
+  - mysql-real

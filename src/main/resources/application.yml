@@ -20,7 +20,6 @@ server:
   servlet:
     encoding:
       charset: UTF-8
-  port: 8080
 
 rest:
   maxConnTotal: 50

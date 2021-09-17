@@ -4,6 +4,7 @@ plugins {
 	id "org.asciidoctor.convert" version "1.5.9.2"
 	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 	id 'java'
+	id 'war'
 }
 
 group = 'com.pasta'
@@ -51,8 +52,8 @@ dependencies {
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
 	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 
-	//mysql
-	runtimeOnly 'mysql:mysql-connector-java'
+	//maria
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly('org.springframework.boot:spring-boot-devtools')

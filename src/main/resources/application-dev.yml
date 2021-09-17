@@ -13,13 +13,10 @@ spring:
         order_updates: true
     open-in-view: false
 
-#  DOCKER 접속시 원격접속 오픈 명령어
-#  ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password by 'yourpassword';
-#  FLUSH PRIVILEGES;
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://localhost:3306/aglio?useUnicode=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
+    driverClassName: org.mariadb.jdbc.Driver
+    jdbcUrl: jdbc:mariadb://localhost:3306/aglio?useUnicode=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
     username: root
     password: 1q2w3e4r1!
     hikari:
@@ -29,7 +26,6 @@ spring:
       data-source-properties:
         rewriteBatchedStatements: true # mysql 한정
 #    data: data.sql
-
 
 # none
 # create-drop : 시작시 drop -> create / 종료 : drop
@@ -46,3 +42,6 @@ decorator:
   datasource:
     p6spy:
       enable-logging: true
+
+server:
+  port: 8080

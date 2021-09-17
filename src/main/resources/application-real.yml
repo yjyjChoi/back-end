@@ -1,0 +1,41 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 1000
+        jdbc.batch_size: 50
+        order_inserts: true
+        order_updates: true
+    open-in-view: false
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.mariadb.jdbc.Driver
+    jdbcUrl: jdbc:${vcap.services.mysql-real.credentials.uri}
+    username: ${vcap.services.mysql-real.credentials.username}
+    password: ${vcap.services.mysql-real.credentials.password}
+    hikari:
+      connectionTimeout: 10000
+      maximumPoolSize: 10
+      minimumIdle: 5
+      data-source-properties:
+        rewriteBatchedStatements: true # mysql 한정
+#    data: data.sql
+
+#slack:
+#  url: https://slack.com/api/chat.postMessage
+#  botToken: xoxb-2130138440769-2117738538403-gNuRiDz3Zg2pYk5cQd74FcxB
+#  channel: C023FMM4ZR9
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+server:
+  port: 80
