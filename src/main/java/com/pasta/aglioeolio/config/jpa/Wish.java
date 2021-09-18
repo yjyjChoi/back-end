@@ -1,7 +1,6 @@
 package com.pasta.aglioeolio.config.jpa;
 
-import com.pasta.aglioeolio.common.BaseTimeEntity;
-import javax.persistence.Column;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +20,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity(name = "wish")
-public class Wish extends BaseTimeEntity {
+public class Wish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,21 +28,20 @@ public class Wish extends BaseTimeEntity {
 
     private String title;
 
-    @Column(length=1000)
     private String content;
 
     private Integer round;
 
-    @Column(name = "is_anonymous")
     private Boolean isAnonymous;
 
-    @Column(name = "is_delyn")
     private Boolean isDelyn;
 
-    @Column(name = "category_id")
     private Long categoryId;
 
-    @Column(name = "solider_id")
     private Long soldierId;
+
+    private LocalDateTime createdDateTime;
+
+    private LocalDateTime updatedDateTime;
 
 }

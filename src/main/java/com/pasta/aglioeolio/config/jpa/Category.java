@@ -1,6 +1,6 @@
 package com.pasta.aglioeolio.config.jpa;
 
-import com.pasta.aglioeolio.common.BaseTimeEntity;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,12 +16,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "category")
-public class Category extends BaseTimeEntity {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
+
+    private LocalDateTime createdDateTime;
+
+    private LocalDateTime updatedDateTime;
 
 }

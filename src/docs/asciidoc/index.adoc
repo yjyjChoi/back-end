@@ -1,0 +1,54 @@
+= *제목 API Docs*
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+[[common]]
+== *공통 사항*
+
+API에 관계없이 아래 사항을 지켜주셔야 합니다.
+
+=== Domain
+
+|===
+| 환경 | domain
+
+| 개발서버
+| `http://localhost:8080/`
+
+| 스테이지 서버
+| `https://${추후 정하기}/`
+|===
+
+
+=== Header
+
+|===
+| name | 설명
+
+| `Authorization`
+| JWT - Bearer 토큰
+|===
+
+=== 예외 Response Body
+
+|===
+| field | 설명
+
+| `status`
+| HTTP 상태코드
+
+| `message`
+| 예외사항 내용 등 응답 메세지
+
+| `fieldErrors`
+| 필드에러
+|===
+
+== *소원 API*
+include::wish.adoc[]

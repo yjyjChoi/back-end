@@ -1,0 +1,30 @@
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+=== 소원 다건 조회
+==== Request
+include::{snippets}/wish/findAllWish/http-request.adoc[]
+==== Response
+include::{snippets}/wish/findAllWish/http-response.adoc[]
+include::{snippets}/wish/findAllWish/response-fields.adoc[]
+
+=== 소원 단건 조회
+==== Request
+include::{snippets}/wish/findWishById/http-request.adoc[]
+==== Response
+include::{snippets}/wish/findWishById/http-response.adoc[]
+include::{snippets}/wish/findWishById/response-fields.adoc[]
+
+=== 소원 등록
+==== Request
+include::{snippets}/wish/createWish/http-request.adoc[]
+include::{snippets}/wish/createWish/request-fields.adoc[]
+==== Response
+include::{snippets}/wish/createWish/http-response.adoc[]
+include::{snippets}/wish/createWish/response-fields.adoc[]
