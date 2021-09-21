@@ -3,6 +3,9 @@ package com.pasta.aglioeolio.documentation;
 import static com.pasta.aglioeolio.documentation.utils.DocumentationUtils.getDocumentRequest;
 import static com.pasta.aglioeolio.documentation.utils.DocumentationUtils.getDocumentResponse;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.payload.JsonFieldType.ARRAY;
+import static org.springframework.restdocs.payload.JsonFieldType.BOOLEAN;
+import static org.springframework.restdocs.payload.JsonFieldType.NUMBER;
 import static org.springframework.restdocs.payload.JsonFieldType.STRING;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
@@ -19,18 +22,16 @@ public class WishDocumentation {
             getDocumentRequest(),
             getDocumentResponse(),
 //            requestHeaders(
-//                headerWithName(HttpHeaders.CONTENT_TYPE).description("Content-type")
+//                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
 //            ),
-//            pathParameters(
-//                parameterWithName("postId").description("포스트 id")
-//            ),
-//              requestFields(
-//                fieldWithPath("name").description("프로필로 사용할 이름"),
-//                fieldWithPath("socialId").description("소셜 로그인 ID")
-//              ),
             responseFields(
                 fieldWithPath("[].title").type(STRING).description("제목"),
-                fieldWithPath("[].content").type(STRING).description("내용")
+                fieldWithPath("[].content").type(STRING).description("내용"),
+                fieldWithPath("[].round").type(NUMBER).description("차수"),
+                fieldWithPath("[].isAnonymous").type(BOOLEAN).description("익명여부"),
+                fieldWithPath("[].categoryId").type(NUMBER).description("카테고리 인덱스"),
+                fieldWithPath("[].verificationSoldier").type(BOOLEAN).description("간부 확인여부"),
+                fieldWithPath("[].officers").type(ARRAY).description("지정 간부 인덱스")
             )
         );
     }
@@ -39,12 +40,20 @@ public class WishDocumentation {
         return document("wish/findWishById",
             getDocumentRequest(),
             getDocumentResponse(),
+//            requestHeaders(
+//                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
+//            ),
             pathParameters(
                 parameterWithName("wishId").description("소원 id")
             ),
             responseFields(
                 fieldWithPath("title").type(STRING).description("제목"),
-                fieldWithPath("content").type(STRING).description("내용")
+                fieldWithPath("content").type(STRING).description("내용"),
+                fieldWithPath("round").type(NUMBER).description("차수"),
+                fieldWithPath("isAnonymous").type(BOOLEAN).description("익명여부"),
+                fieldWithPath("categoryId").type(NUMBER).description("카테고리 인덱스"),
+                fieldWithPath("verificationSoldier").type(BOOLEAN).description("간부 확인여부"),
+                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
             )
         );
     }
@@ -53,13 +62,81 @@ public class WishDocumentation {
         return document("wish/createWish",
             getDocumentRequest(),
             getDocumentResponse(),
+//            requestHeaders(
+//                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
+//            ),
             requestFields(
                 fieldWithPath("title").type(STRING).description("제목"),
-                fieldWithPath("content").type(STRING).description("내용")
+                fieldWithPath("content").type(STRING).description("내용"),
+                fieldWithPath("round").type(NUMBER).description("차수"),
+                fieldWithPath("isAnonymous").type(BOOLEAN).description("익명 여부"),
+                fieldWithPath("categoryId").type(NUMBER).description("카테고리 인덱스"),
+                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
             ),
             responseFields(
                 fieldWithPath("title").type(STRING).description("제목"),
-                fieldWithPath("content").type(STRING).description("내용")
+                fieldWithPath("content").type(STRING).description("내용"),
+                fieldWithPath("round").type(NUMBER).description("차수"),
+                fieldWithPath("isAnonymous").type(BOOLEAN).description("익명여부"),
+                fieldWithPath("categoryId").type(NUMBER).description("내용"),
+                fieldWithPath("verificationSoldier").type(BOOLEAN).description("간부 확인여부"),
+                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
+            )
+        );
+    }
+
+    public static RestDocumentationResultHandler updateWish() {
+        return document("wish/updateWish",
+            getDocumentRequest(),
+            getDocumentResponse(),
+//            requestHeaders(
+//                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
+//            ),
+            pathParameters(
+                parameterWithName("wishId").description("소원 id")
+            ),
+            requestFields(
+                fieldWithPath("title").type(STRING).description("제목"),
+                fieldWithPath("content").type(STRING).description("내용"),
+                fieldWithPath("round").type(NUMBER).description("차수"),
+                fieldWithPath("isAnonymous").type(BOOLEAN).description("익명 여부"),
+                fieldWithPath("categoryId").type(NUMBER).description("카테고리 인덱스"),
+                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
+            ),
+            responseFields(
+                fieldWithPath("title").type(STRING).description("제목"),
+                fieldWithPath("content").type(STRING).description("내용"),
+                fieldWithPath("round").type(NUMBER).description("차수"),
+                fieldWithPath("isAnonymous").type(BOOLEAN).description("익명여부"),
+                fieldWithPath("categoryId").type(NUMBER).description("내용"),
+                fieldWithPath("verificationSoldier").type(BOOLEAN).description("간부 확인여부"),
+                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
+            )
+        );
+    }
+
+    public static RestDocumentationResultHandler deleteWish() {
+        return document("wish/deleteWish",
+            getDocumentRequest(),
+            getDocumentResponse(),
+//            requestHeaders(
+//                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
+//            )
+            pathParameters(
+                parameterWithName("wishId").description("소원 id")
+            )
+        );
+    }
+
+    public static RestDocumentationResultHandler verificationWishBySoldier() {
+        return document("wish/verificationWishBySoldier",
+            getDocumentRequest(),
+            getDocumentResponse(),
+//            requestHeaders(
+//                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
+//            )
+            pathParameters(
+                parameterWithName("wishId").description("소원 id")
             )
         );
     }

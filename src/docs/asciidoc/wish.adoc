@@ -17,6 +17,7 @@ include::{snippets}/wish/findAllWish/response-fields.adoc[]
 === 소원 단건 조회
 ==== Request
 include::{snippets}/wish/findWishById/http-request.adoc[]
+include::{snippets}/wish/findWishById/path-parameters.adoc[]
 ==== Response
 include::{snippets}/wish/findWishById/http-response.adoc[]
 include::{snippets}/wish/findWishById/response-fields.adoc[]
@@ -28,3 +29,26 @@ include::{snippets}/wish/createWish/request-fields.adoc[]
 ==== Response
 include::{snippets}/wish/createWish/http-response.adoc[]
 include::{snippets}/wish/createWish/response-fields.adoc[]
+
+=== 소원 수정
+==== Request
+include::{snippets}/wish/updateWish/http-request.adoc[]
+include::{snippets}/wish/updateWish/path-parameters.adoc[]
+include::{snippets}/wish/updateWish/request-fields.adoc[]
+==== Response
+include::{snippets}/wish/updateWish/http-response.adoc[]
+include::{snippets}/wish/updateWish/response-fields.adoc[]
+
+=== 소원 삭제
+==== Request
+include::{snippets}/wish/deleteWish/http-request.adoc[]
+include::{snippets}/wish/deleteWish/path-parameters.adoc[]
+==== Response
+include::{snippets}/wish/deleteWish/http-response.adoc[]
+
+=== 소원 확인(간부)
+==== Request
+include::{snippets}/wish/verificationWishBySoldier/http-request.adoc[]
+include::{snippets}/wish/verificationWishBySoldier/path-parameters.adoc[]
+==== Response
+include::{snippets}/wish/verificationWishBySoldier/http-response.adoc[]

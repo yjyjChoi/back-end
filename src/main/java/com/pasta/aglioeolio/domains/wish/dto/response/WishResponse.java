@@ -1,5 +1,6 @@
 package com.pasta.aglioeolio.domains.wish.dto.response;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,12 +13,9 @@ import lombok.NoArgsConstructor;
 public class WishResponse {
     private String title;
     private String content;
-
-    public static WishResponse from(){
-        return WishResponse.builder()
-            .title("제목")
-            .content("내용")
-            .build();
-    }
-
+    private Integer round;
+    private Boolean isAnonymous;
+    private Long categoryId;
+    private Boolean verificationSoldier;
+    private List<Long> officers;
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateWishRequest {
+public class UpdateWishRequest {
 
     @NotBlank
     private String title;
