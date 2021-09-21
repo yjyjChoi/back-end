@@ -52,3 +52,6 @@ API에 관계없이 아래 사항을 지켜주셔야 합니다.
 
 == *소원 API*
 include::wish.adoc[]
+
+== *카테고리 API*
+include::category.adoc[]

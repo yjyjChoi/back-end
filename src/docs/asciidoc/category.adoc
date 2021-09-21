@@ -1,0 +1,15 @@
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+=== 카테고리 전체 조회
+==== Request
+include::{snippets}/category/findCategories/http-request.adoc[]
+==== Response
+include::{snippets}/category/findCategories/http-response.adoc[]
+include::{snippets}/category/findCategories/response-fields.adoc[]
