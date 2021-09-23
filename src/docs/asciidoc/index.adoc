@@ -55,3 +55,6 @@ include::wish.adoc[]
 
 == *카테고리 API*
 include::category.adoc[]
+
+== *유저 API*
+include::user.adoc[]

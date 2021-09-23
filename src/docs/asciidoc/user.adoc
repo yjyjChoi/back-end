@@ -1,0 +1,15 @@
+:toc: left
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+=== 유저 다건 조회
+==== Request
+include::{snippets}/user/findAllUser/http-request.adoc[]
+==== Response
+include::{snippets}/user/findAllUser/http-response.adoc[]
+include::{snippets}/user/findAllUser/response-fields.adoc[]

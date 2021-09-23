@@ -1,7 +1,6 @@
 package com.pasta.aglioeolio.domains.user.dto.response;
 
-import com.pasta.aglioeolio.config.jpa.User;
-import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserResponse {
 
     public String mtNumber;
