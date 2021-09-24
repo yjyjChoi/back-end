@@ -13,3 +13,35 @@ include::{snippets}/user/findAllUser/http-request.adoc[]
 ==== Response
 include::{snippets}/user/findAllUser/http-response.adoc[]
 include::{snippets}/user/findAllUser/response-fields.adoc[]
+
+=== 유저 단건 조회
+==== Request
+include::{snippets}/user/findUserById/http-request.adoc[]
+include::{snippets}/user/findUserById/path-parameters.adoc[]
+==== Response
+include::{snippets}/user/findUserById/http-response.adoc[]
+include::{snippets}/user/findUserById/response-fields.adoc[]
+
+=== 유저 등록
+==== Request
+include::{snippets}/user/createUser/http-request.adoc[]
+include::{snippets}/user/createUser/request-fields.adoc[]
+==== Response
+include::{snippets}/user/createUser/http-response.adoc[]
+include::{snippets}/user/createUser/response-fields.adoc[]
+
+=== 유저 수정
+==== Request
+include::{snippets}/user/updateUser/http-request.adoc[]
+include::{snippets}/user/updateUser/path-parameters.adoc[]
+include::{snippets}/user/updateUser/request-fields.adoc[]
+==== Response
+include::{snippets}/user/updateUser/http-response.adoc[]
+include::{snippets}/user/updateUser/response-fields.adoc[]
+
+=== 유저 삭제
+==== Request
+include::{snippets}/user/deleteUser/http-request.adoc[]
+include::{snippets}/user/deleteUser/path-parameters.adoc[]
+==== Response
+include::{snippets}/user/deleteUser/http-response.adoc[]

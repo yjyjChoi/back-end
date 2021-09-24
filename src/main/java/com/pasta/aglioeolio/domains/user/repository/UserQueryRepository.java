@@ -20,10 +20,10 @@ public class UserQueryRepository {
 
     private final JPAQueryFactory queryFactory; // 물론 이를 위해서는 빈으로 등록을 해줘야 한다.
 
-    public User findByMtNumber(String mtNumber) {
+    public User findByMtNumber(String mt_number) {
         return queryFactory
                 .selectFrom(user)
-                .where(user.mtNumber.eq(mtNumber))
+                .where(user.mt_number.eq(mt_number))
                 .fetchOne();
     }
 

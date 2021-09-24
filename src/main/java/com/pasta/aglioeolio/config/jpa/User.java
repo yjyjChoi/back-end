@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @DynamicInsert
 @DynamicUpdate
@@ -22,35 +23,30 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mtNumber; // 군번
+    private String mt_number; // 군번
 
     private String password; // 비밀번호
 
-    public User(String mtNumber, String password) {
-        this.mtNumber = mtNumber;
-        this.password = password;
-    }
+    private String enlist_date; // 입대일자
 
-//    private Date enlistDate; // 입대일자
-//
-//    private Date dischargeDate; // 전역일자
-//
-//    private String name; // 이름
-//
-//    private String phone_number; // 핸드폰번호
-//
-//    private String rank; // 계급
-//
-//    private String affiliation; // 소속
-//
-//    private String profileImage; // 프로필 사진
-//
-//    private boolean blueFalcon; // 관심병사 여부
-//
-//    private String role; // 권한 // 병사 :  ROLE_SOLDIER, 간부 : ROLE_OFFICER
-//
-//    private int failCount; // 로그인 실패 카운트
-//
-//    private boolean isDelyn; // 삭제 여부
+    private String discharge_date; // 전역일자
+
+    private String name; // 이름
+
+    private String phone_number; // 핸드폰번호
+
+    private String rank; // 계급
+
+    private String affiliation; // 소속
+
+    private String profile_image; // 프로필 사진
+
+    private Boolean blue_falcon; // 관심병사 여부
+
+    private String role; // 권한 // 병사 :  ROLE_SOLDIER, 간부 : ROLE_OFFICER
+
+    private Integer fail_count; // 로그인 실패 카운트
+
+    private Boolean is_delyn; // 삭제 여부
 
 }
