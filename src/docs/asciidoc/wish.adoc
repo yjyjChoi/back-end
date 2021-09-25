@@ -49,6 +49,6 @@ include::{snippets}/wish/deleteWish/http-response.adoc[]
 === 소원 확인(간부)
 ==== Request
 include::{snippets}/wish/verificationWishBySoldier/http-request.adoc[]
-include::{snippets}/wish/verificationWishBySoldier/path-parameters.adoc[]
+include::{snippets}/wish/verificationWishBySoldier/request-fields.adoc[]
 ==== Response
 include::{snippets}/wish/verificationWishBySoldier/http-response.adoc[]

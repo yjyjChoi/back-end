@@ -16,7 +16,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: org.mariadb.jdbc.Driver
-    jdbcUrl: jdbc:${vcap.services.mysql-real.credentials.uri}
+    url: jdbc:${vcap.services.mysql-real.credentials.uri}
     username: ${vcap.services.mysql-real.credentials.username}
     password: ${vcap.services.mysql-real.credentials.password}
     hikari:

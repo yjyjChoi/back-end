@@ -4,8 +4,9 @@ import com.pasta.aglioeolio.common.Login;
 import com.pasta.aglioeolio.common.LoginUser;
 import com.pasta.aglioeolio.domains.wish.dto.request.CreateWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.request.UpdateWishRequest;
+import com.pasta.aglioeolio.domains.wish.dto.request.VerificationWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
-import java.util.ArrayList;
+import com.pasta.aglioeolio.domains.wish.service.WishService;
 import java.util.Arrays;
 import java.util.List;
 import javax.validation.Valid;
@@ -24,36 +25,44 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/wishs")
 public class WishController {
 
+    private WishService wishService;
+
+    public WishController(WishService wishService) {
+        this.wishService = wishService;
+    }
+
     @GetMapping
     public ResponseEntity<List<WishResponse>> findAllWish(
         @Login LoginUser loginUser
     ) {
+        return ResponseEntity.ok(wishService.findAllWish(loginUser));
 
-        WishResponse from = WishResponse.builder()
-            .title("제목")
-            .content("내용")
-            .round(1)
-            .isAnonymous(true)
-            .categoryId(1L)
-            .verificationSoldier(true)
-            .officers(Arrays.asList(1L, 2L, 3L))
-            .build();
+//        WishResponse from = WishResponse.builder()
+//            .title("제목")
+//            .content("내용")
+//            .round(1)
+//            .isAnonymous(true)
+//            .categoryId(1L)
+//            .verificationSoldier(true)
+//            .officers(Arrays.asList(1L, 2L, 3L))
+//            .build();
+//
+//        WishResponse from2 = WishResponse.builder()
+//            .title("제목2")
+//            .content("내용2")
+//            .round(1)
+//            .isAnonymous(true)
+//            .categoryId(1L)
+//            .verificationSoldier(true)
+//            .officers(Arrays.asList(1L, 2L, 3L))
+//            .build();
+//
+//        List<WishResponse> wishResponse = new ArrayList<>();
+//        wishResponse.add(from);
+//        wishResponse.add(from2);
+//
+//        return ResponseEntity.ok(wishResponse);
 
-        WishResponse from2 = WishResponse.builder()
-            .title("제목2")
-            .content("내용2")
-            .round(1)
-            .isAnonymous(true)
-            .categoryId(1L)
-            .verificationSoldier(true)
-            .officers(Arrays.asList(1L, 2L, 3L))
-            .build();
-
-        List<WishResponse> wishResponse = new ArrayList<>();
-        wishResponse.add(from);
-        wishResponse.add(from2);
-
-        return ResponseEntity.ok(wishResponse);
     }
 
     @GetMapping("/{wishId}")
@@ -66,7 +75,7 @@ public class WishController {
             .content("내용")
             .round(1)
             .isAnonymous(true)
-            .categoryId(1L)
+            .categoryName("카테고리 이름")
             .verificationSoldier(true)
             .officers(Arrays.asList(1L, 2L, 3L))
             .build();
@@ -84,7 +93,7 @@ public class WishController {
             .content("내용")
             .round(1)
             .isAnonymous(true)
-            .categoryId(1L)
+            .categoryName("카테고리 이름")
             .verificationSoldier(true)
             .officers(Arrays.asList(1L, 2L, 3L))
             .build();
@@ -103,7 +112,7 @@ public class WishController {
             .content("내용(수정)")
             .round(1)
             .isAnonymous(true)
-            .categoryId(1L)
+            .categoryName("카테고리 이름")
             .verificationSoldier(false)
             .officers(Arrays.asList(1L, 2L, 3L))
             .build();
@@ -118,10 +127,10 @@ public class WishController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/verification/{wishId}/soldier")
+    @PostMapping("/verification/soldier")
     public ResponseEntity<WishResponse> verificationWishBySoldier(
         @Login LoginUser loginUser,
-        @PathVariable @NotNull Long wishId) {
+        @RequestBody @Valid VerificationWishRequest verificationWishRequest) {
         return ResponseEntity.noContent().build();
     }
 

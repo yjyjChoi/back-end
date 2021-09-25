@@ -32,16 +32,16 @@ public class Wish {
 
     private Integer round;
 
-    private Boolean isAnonymous;
+    private Boolean is_anonymous;
 
-    private Boolean isDelyn;
+    private Boolean is_delyn;
 
-    private Long categoryId;
+    private Long category_id;
 
-    private Long soldierId;
+    private Long soldier_id;
 
-    private LocalDateTime createdDateTime;
+    private LocalDateTime created_datetime;
 
-    private LocalDateTime updatedDateTime;
+    private LocalDateTime updated_dateTime;
 
 }

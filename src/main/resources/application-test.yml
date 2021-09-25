@@ -16,7 +16,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: org.mariadb.jdbc.Driver
-    jdbcUrl: jdbc:mariadb://localhost:3306/aglio?useUnicode=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://localhost:3306/aglio?useUnicode=true&allowMultiQueries=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
     username: root
     password: 1q2w3e4r1!
     hikari:

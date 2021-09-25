@@ -11,6 +11,7 @@ import com.pasta.aglioeolio.BaseControllerTest;
 import com.pasta.aglioeolio.documentation.WishDocumentation;
 import com.pasta.aglioeolio.domains.wish.dto.request.CreateWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.request.UpdateWishRequest;
+import com.pasta.aglioeolio.domains.wish.dto.request.VerificationWishRequest;
 import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,14 +21,14 @@ class WishControllerTest extends BaseControllerTest {
 
     private static final String BEGIN_URL = "/api/wishs";
 
-    @DisplayName("소원 다건 조회")
-    @Test
-    void findAllWish() throws Exception {
-        this.mockMvc.perform(get(BEGIN_URL))
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andDo(WishDocumentation.findAllWish());
-    }
+//    @DisplayName("소원 다건 조회")
+//    @Test
+//    void findAllWish() throws Exception {
+//        this.mockMvc.perform(get(BEGIN_URL))
+//            .andDo(print())
+//            .andExpect(status().isOk())
+//            .andDo(WishDocumentation.findAllWish());
+//    }
 
     @DisplayName("소원 단건 조회")
     @Test
@@ -64,7 +65,6 @@ class WishControllerTest extends BaseControllerTest {
         );
 
         this.mockMvc.perform(patch(BEGIN_URL+ "/{wishId}",1)
-
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updateWishRequest))
                 .accept(MediaType.APPLICATION_JSON)
@@ -87,12 +87,16 @@ class WishControllerTest extends BaseControllerTest {
             .andDo(WishDocumentation.deleteWish());
     }
 
-    @DisplayName("간부 소원 확인")
+    @DisplayName("간부가 읽은 소원에 대한 확인")
     @Test
     void verificationWishBySoldier() throws Exception {
+        VerificationWishRequest verificationWishRequest = new VerificationWishRequest(
+            Arrays.asList(1L, 2L, 3L)
+        );
 
-        this.mockMvc.perform(post(BEGIN_URL + "/verification/{wishId}/soldier", 1)
+        this.mockMvc.perform(post(BEGIN_URL + "/verification/soldier")
                 .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(verificationWishRequest))
                 .accept(MediaType.APPLICATION_JSON)
             )
             .andDo(print())

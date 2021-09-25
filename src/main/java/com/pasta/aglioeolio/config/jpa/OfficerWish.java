@@ -26,14 +26,14 @@ public class OfficerWish {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long officerId;
+    private Long officer_id;
 
-    private Long wishId;
+    private Long wish_id;
 
-    private Boolean isChecked;
+    private Boolean is_checked;
 
-    private LocalDateTime createdDateTime;
+    private LocalDateTime created_datetime;
 
-    private LocalDateTime updatedDateTime;
+    private LocalDateTime updated_dateTime;
 
 }
