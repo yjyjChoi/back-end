@@ -21,7 +21,7 @@ public class CategoryDocumentation {
 //            ),
             responseFields(
                 fieldWithPath("[].id").type(NUMBER).description("카테고리 인덱스"),
-                fieldWithPath("[].name").type(STRING).description("내용")
+                fieldWithPath("[].name").type(STRING).description("카테고리 이름")
             )
         );
     }

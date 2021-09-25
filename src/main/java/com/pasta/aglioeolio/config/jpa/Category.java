@@ -28,6 +28,5 @@ public class Category {
 
     private LocalDateTime created_datetime;
 
-    private LocalDateTime updated_dateTime;
-
+    private LocalDateTime updated_datetime;
 }
