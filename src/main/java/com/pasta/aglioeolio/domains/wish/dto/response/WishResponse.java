@@ -1,6 +1,8 @@
 package com.pasta.aglioeolio.domains.wish.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.pasta.aglioeolio.config.jpa.User;
+import com.pasta.aglioeolio.config.jpa.Wish;
 import com.pasta.aglioeolio.domains.user.dto.response.UserResponse;
 import com.pasta.aglioeolio.domains.wish.dto.query.WishQueryDto;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WishResponse {
 
+    private Long id;
     private String title;
     private String content;
     private Integer round;
@@ -29,12 +32,24 @@ public class WishResponse {
 
     private UserResponse user;
 
+    public static WishResponse of(Wish wish, User user, String categoryName){
+        return WishResponse.builder()
+            .id(wish.getId())
+            .title(wish.getTitle())
+            .content(wish.getContent())
+            .round(wish.getRound())
+            .categoryName(categoryName)
+            .isAnonymous(wish.getIs_anonymous())
+            .user(userResponse(user))
+            .build();
+    }
+
     public static WishResponse of(WishQueryDto wishQueryDto){
         return WishResponse.builder()
+            .id(wishQueryDto.getWishId())
             .title(wishQueryDto.getTitle())
             .content(wishQueryDto.getContent())
             .round(wishQueryDto.getRound())
-
             .categoryName(wishQueryDto.getCategoryName())
             //.verificationSoldier()
             //.officers()
@@ -58,6 +73,16 @@ public class WishResponse {
             .rank(wishQueryDto.getRank())
             .affiliation(wishQueryDto.getAffiliation())
             .profileImage(wishQueryDto.getProfileImage())
+            .build();
+    }
+
+    private static UserResponse userResponse(User user){
+        return UserResponse.builder()
+            .mtNumber(user.getMt_number())
+            .name(user.getName())
+            .rank(user.getRank())
+            .affiliation(user.getAffiliation())
+            .profileImage(user.getProfile_image())
             .build();
     }
 

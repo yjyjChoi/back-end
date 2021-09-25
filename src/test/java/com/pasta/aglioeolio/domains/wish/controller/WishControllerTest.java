@@ -30,32 +30,32 @@ class WishControllerTest extends BaseControllerTest {
 //            .andDo(WishDocumentation.findAllWish());
 //    }
 
-    @DisplayName("소원 단건 조회")
-    @Test
-    void findWishById() throws Exception {
-        this.mockMvc.perform(get(BEGIN_URL + "/{wishId}", 1)
-            )
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andDo(WishDocumentation.findWishById());
-    }
+//    @DisplayName("소원 단건 조회")
+//    @Test
+//    void findWishById() throws Exception {
+//        this.mockMvc.perform(get(BEGIN_URL + "/{wishId}", 1)
+//            )
+//            .andDo(print())
+//            .andExpect(status().isOk())
+//            .andDo(WishDocumentation.findWishById());
+//    }
 
-    @DisplayName("소원 등록")
-    @Test
-    void createWish() throws Exception {
-        CreateWishRequest createWishRequest = new CreateWishRequest(
-            "제목", "내용", 1, true, 1L, Arrays.asList(1L, 2L, 3L)
-        );
-
-        this.mockMvc.perform(post(BEGIN_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(createWishRequest))
-                .accept(MediaType.APPLICATION_JSON)
-            )
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andDo(WishDocumentation.createWish());
-    }
+//    @DisplayName("소원 등록")
+//    @Test
+//    void createWish() throws Exception {
+//        CreateWishRequest createWishRequest = new CreateWishRequest(
+//            "제목", "내용", 1, true, 1L, Arrays.asList(1L, 2L, 3L)
+//        );
+//
+//        this.mockMvc.perform(post(BEGIN_URL)
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(createWishRequest))
+//                .accept(MediaType.APPLICATION_JSON)
+//            )
+//            .andDo(print())
+//            .andExpect(status().isOk())
+//            .andDo(WishDocumentation.createWish());
+//    }
 
     @DisplayName("소원 수정")
     @Test

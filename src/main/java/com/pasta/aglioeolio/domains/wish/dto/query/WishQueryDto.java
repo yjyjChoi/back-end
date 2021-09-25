@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class WishQueryDto {
 
     //wish
-    private String wishId;
+    private Long wishId;
     private String title;
     private String content;
     private Integer round;

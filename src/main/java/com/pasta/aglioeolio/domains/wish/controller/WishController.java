@@ -7,6 +7,7 @@ import com.pasta.aglioeolio.domains.wish.dto.request.UpdateWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.request.VerificationWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
 import com.pasta.aglioeolio.domains.wish.service.WishService;
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import javax.validation.Valid;
@@ -36,51 +37,13 @@ public class WishController {
         @Login LoginUser loginUser
     ) {
         return ResponseEntity.ok(wishService.findAllWish(loginUser));
-
-//        WishResponse from = WishResponse.builder()
-//            .title("제목")
-//            .content("내용")
-//            .round(1)
-//            .isAnonymous(true)
-//            .categoryId(1L)
-//            .verificationSoldier(true)
-//            .officers(Arrays.asList(1L, 2L, 3L))
-//            .build();
-//
-//        WishResponse from2 = WishResponse.builder()
-//            .title("제목2")
-//            .content("내용2")
-//            .round(1)
-//            .isAnonymous(true)
-//            .categoryId(1L)
-//            .verificationSoldier(true)
-//            .officers(Arrays.asList(1L, 2L, 3L))
-//            .build();
-//
-//        List<WishResponse> wishResponse = new ArrayList<>();
-//        wishResponse.add(from);
-//        wishResponse.add(from2);
-//
-//        return ResponseEntity.ok(wishResponse);
-
     }
 
     @GetMapping("/{wishId}")
     public ResponseEntity<WishResponse> findWishById(
-        @Login LoginUser loginUser,
         @PathVariable @NotNull Long wishId
     ) {
-        WishResponse wishResponse = WishResponse.builder()
-            .title("제목")
-            .content("내용")
-            .round(1)
-            .isAnonymous(true)
-            .categoryName("카테고리 이름")
-            .verificationSoldier(true)
-            .officers(Arrays.asList(1L, 2L, 3L))
-            .build();
-
-        return ResponseEntity.ok(wishResponse);
+        return ResponseEntity.ok(wishService.findWishById(wishId));
     }
 
     @PostMapping
@@ -88,17 +51,10 @@ public class WishController {
         @Login LoginUser loginUser,
         @RequestBody @Valid CreateWishRequest createWishRequest
     ) {
-        WishResponse wishResponse = WishResponse.builder()
-            .title("제목")
-            .content("내용")
-            .round(1)
-            .isAnonymous(true)
-            .categoryName("카테고리 이름")
-            .verificationSoldier(true)
-            .officers(Arrays.asList(1L, 2L, 3L))
-            .build();
+        WishResponse wishResponse = wishService.createWish(createWishRequest, loginUser);
 
-        return ResponseEntity.ok(wishResponse);
+        return ResponseEntity.created(
+            URI.create("/api/wishs" + wishResponse.getId())).body(wishResponse);
     }
 
     @PatchMapping("/{wishId}")

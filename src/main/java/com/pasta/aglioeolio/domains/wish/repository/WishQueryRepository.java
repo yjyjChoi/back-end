@@ -46,12 +46,39 @@ public class WishQueryRepository {
             .join(category).on(wish.category_id.eq(category.id))
             .join(user).on(wish.soldier_id.eq(user.id))
             .where(
-                condition(1L, user.id::eq)
+                condition(1L, user.id::eq) //TODO: LoginUser 적용 후 교체
                     .and(wish.is_delyn.eq(FALSE.getStatus())
                         .and(user.is_delyn.eq(FALSE.getStatus()))
 
                     ))
             .fetch();
+    }
+
+    public WishQueryDto findWishById(Long wishId) {
+        return this.queryFactory
+            .select(Projections.fields(
+                WishQueryDto.class
+                , wish.id
+                , wish.title
+                , wish.content
+                , wish.round
+                , wish.is_anonymous.as("isAnonymous")
+                , category.name.as("categoryName")
+                , user.mt_number.as("mtNumber")
+                , user.name.as("userName")
+                , user.rank
+                , user.affiliation
+                , user.profile_image.as("profileImage")
+            ))
+            .from(wish)
+            .join(category).on(wish.category_id.eq(category.id))
+            .join(user).on(wish.soldier_id.eq(user.id))
+            .where(
+                condition(wishId, wish.id::eq)
+                    .and(wish.is_delyn.eq(FALSE.getStatus())
+                        .and(user.is_delyn.eq(FALSE.getStatus()))
+                    ))
+            .fetchOne();
     }
 
     //   condition(playerQueryParam.getTeamName(), team.name::eq))
