@@ -9,18 +9,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateUserRequest {
 
-    private String mt_number;
+    private String mtNumber;
     private String password;
-    private String enlist_date;
-    private String discharge_date;
+    private String enlistDate;
+    private String dischargeDate;
     private String name;
-    private String phone_number;
+    private String phoneNumber;
     private String rank;
     private String affiliation;
-    private String profile_image;
-    private Boolean blue_falcon;
+    private String profileImage;
+    private Boolean blueFalcon;
     private String role;
-    private Integer fail_count;
-    private Boolean is_delyn;
+    private Integer failCount;
+    private Boolean isDelyn;
 
 }

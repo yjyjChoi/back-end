@@ -6,7 +6,7 @@ import org.springframework.restdocs.snippet.Attributes;
 
 public class DocumentFormatGenerator {
 
-    static Attributes.Attribute getDateFormat() {
+    public static Attributes.Attribute getDateFormat() {
         return key("format").value("yyyy-MM-dd");
     }
 

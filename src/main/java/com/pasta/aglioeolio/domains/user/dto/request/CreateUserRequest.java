@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreateUserRequest {
 
-    private String mt_number;
+    private String mtNumber;
     private String password;
-    private String enlist_date;
-    private String discharge_date;
+    private String enlistDate;
+    private String dischargeDate;
     private String name;
-    private String phone_number;
+    private String phoneNumber;
     private String rank;
     private String affiliation;
-    private String profile_image;
+    private String profileImage;
 //    private Boolean blue_falcon;
 //    private String role;
 //    private Integer fail_count;
