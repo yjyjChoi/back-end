@@ -37,3 +37,6 @@ out/
 .vscode/
 
 ./logs
+
+./src/test/com/pasta/aglioeolio/domains/category/service/CategoryServiceTest
+./src/test/com/pasta/aglioeolio/domains/wish/service/WishServiceTest
