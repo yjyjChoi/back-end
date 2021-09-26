@@ -81,7 +81,6 @@ public class WishQueryRepository {
             .fetchOne();
     }
 
-    //   condition(playerQueryParam.getTeamName(), team.name::eq))
     private <T> BooleanExpression condition(T value, Function<T, BooleanExpression> function) {
         return Optional.ofNullable(value).map(function).orElse(null);
     }

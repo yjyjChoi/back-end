@@ -14,19 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class ExceptionResponse {
-    private Integer status; // HTTP 상태값
-    private String message = "";
+    private String errorCode;
     @Builder.Default
     private List<Map<String, String>> fieldErrors = new ArrayList<>();
 
-    ExceptionResponse(Integer status, String message) {
-        this.status = status;
-        this.message = message;
+    public ExceptionResponse(String errorCode) {
+        this.errorCode = errorCode;
     }
 
-    ExceptionResponse(Integer status, String message, List<Map<String, String>> fieldErrors) {
-        this.status = status;
-        this.message = message;
+    public ExceptionResponse(String errorCode,
+        List<Map<String, String>> fieldErrors) {
+        this.errorCode = errorCode;
         this.fieldErrors = fieldErrors;
     }
 

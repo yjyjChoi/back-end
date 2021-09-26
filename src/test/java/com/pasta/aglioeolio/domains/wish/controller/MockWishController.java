@@ -3,6 +3,7 @@ package com.pasta.aglioeolio.domains.wish.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -12,6 +13,7 @@ import com.pasta.aglioeolio.MockBaseControllerTest;
 import com.pasta.aglioeolio.documentation.WishDocumentation;
 import com.pasta.aglioeolio.domains.user.dto.response.UserResponse;
 import com.pasta.aglioeolio.domains.wish.dto.request.CreateWishRequest;
+import com.pasta.aglioeolio.domains.wish.dto.request.UpdateWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
 import com.pasta.aglioeolio.domains.wish.service.WishService;
 import java.util.ArrayList;
@@ -149,6 +151,41 @@ public class MockWishController extends MockBaseControllerTest {
             .andExpect(status().isCreated())
             .andExpect(content().string(responseBody))
             .andDo(WishDocumentation.createWish());
+    }
+
+    @DisplayName("소원 수정")
+    @Test
+    void updateWish() throws Exception {
+        //given
+        UpdateWishRequest updateWishRequest = new UpdateWishRequest(
+            "제목", "내용", 1, true, 1L, Arrays.asList(1L, 2L, 3L)
+        );
+
+        WishResponse wishResponse = WishResponse.builder()
+            .id(1L)
+            .title("제목_수정")
+            .content("내용_수정")
+            .round(1)
+            .categoryName("카테고리_수정")
+            .isAnonymous(true)
+            .user(userResponse)
+            .build();
+
+        given(wishService.updateWish(any(), any(), any())).willReturn(wishResponse);
+
+        String requestBody = objectMapper.writeValueAsString(updateWishRequest);
+        String responseBody = objectMapper.writeValueAsString(wishResponse);
+
+        //when & then
+        this.mockMvc.perform(patch(BEGIN_URL+ "/{wishId}",1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestBody)
+                .accept(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string(responseBody))
+            .andDo(WishDocumentation.updateWish());
     }
 
 }

@@ -8,7 +8,6 @@ import com.pasta.aglioeolio.domains.wish.dto.request.VerificationWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
 import com.pasta.aglioeolio.domains.wish.service.WishService;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -62,17 +61,7 @@ public class WishController {
         @Login LoginUser loginUser,
         @RequestBody @Valid UpdateWishRequest createWishRequest,
         @PathVariable @NotNull Long wishId) {
-
-        WishResponse wishResponse = WishResponse.builder()
-            .title("제목(수정)")
-            .content("내용(수정)")
-            .round(1)
-            .isAnonymous(true)
-            .categoryName("카테고리 이름")
-            .verificationSoldier(false)
-            .officers(Arrays.asList(1L, 2L, 3L))
-            .build();
-
+        WishResponse wishResponse = wishService.updateWish(createWishRequest, wishId, loginUser);
         return ResponseEntity.ok(wishResponse);
     }
 

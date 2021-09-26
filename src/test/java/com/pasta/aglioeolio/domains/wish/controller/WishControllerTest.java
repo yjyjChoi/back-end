@@ -57,22 +57,22 @@ class WishControllerTest extends BaseControllerTest {
 //            .andDo(WishDocumentation.createWish());
 //    }
 
-    @DisplayName("소원 수정")
-    @Test
-    void updateWish() throws Exception {
-        UpdateWishRequest updateWishRequest = new UpdateWishRequest(
-            "제목", "내용", 1, true, 1L, Arrays.asList(1L, 2L, 3L)
-        );
-
-        this.mockMvc.perform(patch(BEGIN_URL+ "/{wishId}",1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updateWishRequest))
-                .accept(MediaType.APPLICATION_JSON)
-            )
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andDo(WishDocumentation.updateWish());
-    }
+//    @DisplayName("소원 수정")
+//    @Test
+//    void updateWish() throws Exception {
+//        UpdateWishRequest updateWishRequest = new UpdateWishRequest(
+//            "제목", "내용", 1, true, 1L, Arrays.asList(1L, 2L, 3L)
+//        );
+//
+//        this.mockMvc.perform(patch(BEGIN_URL+ "/{wishId}",1)
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .content(objectMapper.writeValueAsString(updateWishRequest))
+//                .accept(MediaType.APPLICATION_JSON)
+//            )
+//            .andDo(print())
+//            .andExpect(status().isOk())
+//            .andDo(WishDocumentation.updateWish());
+//    }
 
     @DisplayName("소원 삭제")
     @Test

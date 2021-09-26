@@ -122,13 +122,19 @@ public class WishDocumentation {
                 fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
             ),
             responseFields(
+                fieldWithPath("id").type(NUMBER).description("소원 인덱스"),
                 fieldWithPath("title").type(STRING).description("제목"),
                 fieldWithPath("content").type(STRING).description("내용"),
                 fieldWithPath("round").type(NUMBER).description("차수"),
                 fieldWithPath("isAnonymous").type(BOOLEAN).description("익명여부"),
                 fieldWithPath("categoryName").type(STRING).description("카테고리 이름"),
-                fieldWithPath("verificationSoldier").type(BOOLEAN).description("간부 확인여부"),
-                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
+//                fieldWithPath("verificationSoldier").type(BOOLEAN).description("간부 확인여부"),
+//                fieldWithPath("officers").type(ARRAY).description("지정 간부 인덱스")
+                fieldWithPath("user.mtNumber").type(STRING).description("병사 군번").optional(),
+                fieldWithPath("user.name").type(STRING).description("병사 이름").optional(),
+                fieldWithPath("user.rank").type(STRING).description("병사 계급").optional(),
+                fieldWithPath("user.affiliation").type(STRING).description("병사 소속").optional(),
+                fieldWithPath("user.profileImage").type(STRING).description("병사 사진").optional()
             )
         );
     }

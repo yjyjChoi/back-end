@@ -42,6 +42,14 @@ public class Wish {
 
     private LocalDateTime created_datetime;
 
-    private LocalDateTime updated_dateTime;
+    private LocalDateTime updated_datetime;
+
+    public void changeWish(String title, String content, Integer round, Boolean isAnonymous, Long categoryId){
+        this.title = title;
+        this.content = content;
+        this.round = round;
+        this.is_anonymous = isAnonymous;
+        this.category_id = categoryId;
+    }
 
 }
