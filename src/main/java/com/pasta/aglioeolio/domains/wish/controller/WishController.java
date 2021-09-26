@@ -3,6 +3,7 @@ package com.pasta.aglioeolio.domains.wish.controller;
 import com.pasta.aglioeolio.common.Login;
 import com.pasta.aglioeolio.common.LoginUser;
 import com.pasta.aglioeolio.domains.wish.dto.request.CreateWishRequest;
+import com.pasta.aglioeolio.domains.wish.dto.request.DeleteWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.request.UpdateWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.request.VerificationWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
@@ -68,14 +69,18 @@ public class WishController {
     @DeleteMapping("/{wishId}")
     public ResponseEntity<Void> deleteWish(
         @Login LoginUser loginUser,
-        @PathVariable @NotNull Long wishId) {
+        @RequestBody @Valid DeleteWishRequest deleteWishRequest
+    ) {
+        wishService.deleteWish(deleteWishRequest, loginUser);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/verification/soldier")
-    public ResponseEntity<WishResponse> verificationWishBySoldier(
+    public ResponseEntity<Void> verificationWishBySoldier(
         @Login LoginUser loginUser,
         @RequestBody @Valid VerificationWishRequest verificationWishRequest) {
+        wishService.verificationWishBySoldier(verificationWishRequest, loginUser);
+
         return ResponseEntity.noContent().build();
     }
 

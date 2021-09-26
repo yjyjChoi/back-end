@@ -1,5 +1,7 @@
 package com.pasta.aglioeolio.domains.wish.repository;
 
+import static com.pasta.aglioeolio.common.enums.BooleanType.TRUE;
+
 import com.pasta.aglioeolio.config.jpa.OfficerWish;
 import com.pasta.aglioeolio.config.jpa.QCategory;
 import com.pasta.aglioeolio.config.jpa.QOfficerWish;
@@ -7,6 +9,7 @@ import com.pasta.aglioeolio.config.jpa.QUser;
 import com.pasta.aglioeolio.config.jpa.QWish;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -54,6 +57,18 @@ public class WishOfficerRepository extends QuerydslRepositorySupport {
         return queryFactory.delete(officerWish)
             .where(
                 condition(wishId, officerWish.wish_id::eq)
+            )
+            .execute();
+    }
+
+    public long updateWishCheck(List<Long> wishIds, Long officerId) {
+        JPAUpdateClause userFactory = queryFactory.update(officerWish);
+        userFactory.set(officerWish.is_checked, TRUE.getStatus());
+
+        return userFactory
+            .where(
+                condition(officerId, officerWish.officer_id::eq),
+                condition(wishIds, officerWish.wish_id::in)
             )
             .execute();
     }

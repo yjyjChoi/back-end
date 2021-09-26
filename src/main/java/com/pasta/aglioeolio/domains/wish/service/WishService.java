@@ -5,7 +5,9 @@ import com.pasta.aglioeolio.config.jpa.OfficerWish;
 import com.pasta.aglioeolio.config.jpa.User;
 import com.pasta.aglioeolio.config.jpa.Wish;
 import com.pasta.aglioeolio.domains.wish.dto.request.CreateWishRequest;
+import com.pasta.aglioeolio.domains.wish.dto.request.DeleteWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.request.UpdateWishRequest;
+import com.pasta.aglioeolio.domains.wish.dto.request.VerificationWishRequest;
 import com.pasta.aglioeolio.domains.wish.dto.response.WishResponse;
 import com.pasta.aglioeolio.domains.wish.repository.WishOfficerRepository;
 import com.pasta.aglioeolio.domains.wish.repository.WishQueryRepository;
@@ -93,7 +95,7 @@ public class WishService {
             }
         }
 
-        Wish updatedWish = wishRepository.findById(wishId).orElseThrow(WishNotFoundException::new);
+        Wish updatedWish = wishRepository.findByIdAndSoldierId(wishId, user.getId()).orElseThrow(WishNotFoundException::new);
 
         //wish 수정
         updatedWish.changeWish(
@@ -114,7 +116,14 @@ public class WishService {
         String categoryName = "카테고리 이름";
 
         return WishResponse.of(updatedWish, user, categoryName);
+    }
 
+    public void deleteWish(DeleteWishRequest deleteWishRequest, LoginUser loginUser) {
+        wishRepository.deleteWish(deleteWishRequest.getWishIds(), loginUser.getId());
+    }
+
+    public void verificationWishBySoldier(VerificationWishRequest verificationWishRequest, LoginUser loginUser){
+        wishOfficerRepository.updateWishCheck(verificationWishRequest.getWishIds(), loginUser.getId());
     }
 
     //officer_wish 테이블 삽입, TODO: 추후 다중 insert로 바꾸기

@@ -146,8 +146,8 @@ public class WishDocumentation {
 //            requestHeaders(
 //                headerWithName(HttpHeaders.AUTHORIZATION).description("JWT 토큰(Bearer {jwt토큰}")
 //            )
-            pathParameters(
-                parameterWithName("wishId").description("소원 id")
+            requestFields(
+                fieldWithPath("wishIds").type(ARRAY).description("삭제할 소원 인덱스")
             )
         );
     }
